@@ -44,7 +44,7 @@ Needs macOS 12 or later and the Xcode Command Line Tools (`xcode-select --instal
 - **Your own words.** Paste product names, code or anything you type often, and practise on it.
 - **Stats.** Accuracy and timing per key, speed per finger, a keyboard heat map and your words per minute over time.
 - **Daily goal and streak.** Set 5 to 30 minutes a day and see your last 14 days at a glance.
-- **Mini games.** Word Rain, Key Rush and Perfect Run, using only the keys you've learned so far.
+- **Mini games.** Word Rain adds two new keys every level, Key Rush gives you 30 seconds of single keys, and Perfect Run ends on your first mistake.
 - **17 challenges.** Milestones for lessons, speed, accuracy, practice habits and game scores.
 - **8 themes.** Phosphor green, amber, mono ink, ice, neon, high contrast, paper, or auto to follow your system.
 - **Optional sound.** Soft clicks for right and wrong keys, off by default.
@@ -73,6 +73,7 @@ Needs macOS 12 or later and the Xcode Command Line Tools (`xcode-select --instal
 |---|---|
 | <kbd>1</kbd> to <kbd>5</kbd> | Switch page: Practice, Lessons, Stats, Games, Themes |
 | <kbd>Esc</kbd> | New drill, or quit a game |
+| <kbd>Backspace</kbd> | Let go of a word in Word Rain |
 | <kbd>Enter</kbd> | Next lesson after a pass, or play a game again |
 | <kbd>R</kbd> | Retry the same text |
 | <kbd>W</kbd> | Drill your weakest keys |
