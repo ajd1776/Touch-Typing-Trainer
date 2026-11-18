@@ -13,7 +13,10 @@ cp mac/Info.plist "$APP/Contents/Info.plist"
 cp web/index.html "$APP/Contents/Resources/index.html"
 
 echo "› compiling"
-swiftc -swift-version 5 -O -target "$(uname -m)-apple-macosx12.0" mac/main.swift -o "$APP/Contents/MacOS/TouchTypeTrainer"
+for arch in arm64 x86_64; do
+  swiftc -swift-version 5 -O -target "$arch-apple-macosx12.0" mac/main.swift -o "$TMP/TouchTypeTrainer-$arch"
+done
+lipo -create "$TMP/TouchTypeTrainer-arm64" "$TMP/TouchTypeTrainer-x86_64" -output "$APP/Contents/MacOS/TouchTypeTrainer"
 
 echo "› drawing icon"
 swiftc -swift-version 5 mac/make-icon.swift -o "$TMP/make-icon"
@@ -28,5 +31,12 @@ iconutil -c icns "$TMP/AppIcon.iconset" -o "$APP/Contents/Resources/AppIcon.icns
 echo "› signing (ad hoc)"
 codesign --force --deep -s - "$APP"
 
+echo "› zipping"
+VERSION="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' mac/Info.plist)"
+ZIP="dist/Touch-Type-Trainer-$VERSION.zip"
+rm -f "$ZIP"
+ditto -c -k --keepParent "$APP" "$ZIP"
+
 echo "› done: $APP"
+echo "  zip:  $ZIP"
 echo "  install with: cp -R \"$APP\" /Applications/"

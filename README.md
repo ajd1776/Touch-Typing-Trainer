@@ -3,7 +3,8 @@
   <h1>Touch Type Trainer</h1>
   <p><b>Learn to touch type, two keys at a time, in a terminal-style trainer.</b></p>
 
-![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20web-blue?style=flat-square)
+[![Download](https://img.shields.io/github/v/release/ajd1776/touch-type-trainer?style=flat-square&label=download)](https://github.com/ajd1776/touch-type-trainer/releases/latest)
+[![Try it](https://img.shields.io/badge/try%20it-in%20your%20browser-brightgreen?style=flat-square)](https://ajd1776.github.io/touch-type-trainer/)
 ![Requires](https://img.shields.io/badge/requires-macOS%2012%2B-orange?style=flat-square)
 [![Licence](https://img.shields.io/github/license/ajd1776/touch-type-trainer?style=flat-square)](LICENSE)
 
@@ -17,23 +18,12 @@ Touch Type Trainer teaches touch typing with short drills that add two new keys 
 
 ## Install
 
-**In a browser:** download [`web/index.html`](web/index.html) and open it. That single file is the whole trainer.
+**In your browser:** open **[the web version](https://ajd1776.github.io/touch-type-trainer/)**. Nothing to install.
 
-**As a Mac app:** clone the repo and run the build script.
+**On a Mac:** **[download the latest version](https://github.com/ajd1776/touch-type-trainer/releases/latest)**, unzip it and drag **Touch Type Trainer** into Applications. It runs on Apple silicon and Intel Macs with macOS 12 or later.
 
-```bash
-git clone https://github.com/ajd1776/touch-type-trainer.git
-```
-
-```bash
-cd touch-type-trainer && ./build.sh
-```
-
-```bash
-cp -R "dist/Touch Type Trainer.app" /Applications/
-```
-
-Needs macOS 12 or later and the Xcode Command Line Tools (`xcode-select --install`).
+> [!NOTE]
+> The app isn't signed with an Apple developer ID, so macOS blocks it the first time. Open it once, then go to **System Settings › Privacy & Security** and click **Open Anyway**. On macOS 14 and earlier you can instead right-click the app and choose **Open**.
 
 ## Features
 
@@ -101,13 +91,25 @@ A standard US/UK Mac QWERTY layout. Letters and common symbols match both. Keys 
 <details>
 <summary><b>Why does macOS warn me when I open the app?</b></summary>
 
-The build script signs the app ad hoc, not with an Apple developer ID. An app you build yourself opens normally. If you copy it to another Mac, right-click it and choose **Open** the first time.
+The app is signed ad hoc, not with a paid Apple developer ID, so macOS can't check it with Apple. Use **Open Anyway** as described under [Install](#install). An app you build yourself with `build.sh` opens without the warning.
 
 </details>
 
+## Building from source
+
+```bash
+git clone https://github.com/ajd1776/touch-type-trainer.git
+```
+
+```bash
+cd touch-type-trainer && ./build.sh
+```
+
+This puts the app and a zip in `dist/`. It needs the Xcode Command Line Tools (`xcode-select --install`).
+
 ## How it's built
 
-The whole trainer is one HTML file with plain CSS and JavaScript and no dependencies: [`web/index.html`](web/index.html). The Mac app is a small Swift wrapper ([`mac/main.swift`](mac/main.swift)) that shows that page in a native window and adds the zoom menu. [`build.sh`](build.sh) compiles it, draws the icon and puts the app in `dist/`.
+The whole trainer is one HTML file with plain CSS and JavaScript and no dependencies: [`web/index.html`](web/index.html). The Mac app is a small Swift wrapper ([`mac/main.swift`](mac/main.swift)) that shows that page in a native window and adds the zoom menu. [`build.sh`](build.sh) compiles it for Apple silicon and Intel, draws the icon and puts the app in `dist/`. A GitHub Actions workflow publishes `web/` to GitHub Pages.
 
 ## Contributing
 
